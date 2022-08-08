@@ -36,14 +36,19 @@ public class OcorrenciaController {
 		return filtrada;
 	}
 	
+	
+	
 	@GetMapping("/municipiot/{cidade}/{natureza}/{ano}")
-	public int totalByCity(@PathVariable String cidade, @PathVariable String natureza, @PathVariable int ano) {
+	public int totalByCity(@PathVariable String cidade, @PathVariable String natureza, @PathVariable String ano) {
 		List <Ocorrencia> filtrada = new ArrayList<>();
+		String cidadeFiltro = cidade.equalsIgnoreCase("nula") || cidade.equalsIgnoreCase(null) ? "": cidade;
+		String naturezaFiltro = natureza.equalsIgnoreCase("nula") || natureza.equalsIgnoreCase(null) ? "": natureza;
+		String anoFiltro = ano.equalsIgnoreCase("nula") || ano.equalsIgnoreCase(null) ? "": ano; 
 		for (Ocorrencia oc: ocorrenciaRepository.findAll()) {
 			if(
-				(oc.getMUNICIPIO().equalsIgnoreCase(cidade)||oc.getMUNICIPIO().contains(cidade.toUpperCase())) && 
-				(oc.getNATUREZA().equalsIgnoreCase(natureza) || oc.getNATUREZA().contains(natureza.toUpperCase())) && 
-				(oc.getANO() == ano)	
+				(oc.getMUNICIPIO().equalsIgnoreCase(cidadeFiltro)||oc.getMUNICIPIO().contains(cidadeFiltro.toUpperCase())) && 
+				(oc.getNATUREZA().equalsIgnoreCase(naturezaFiltro) || oc.getNATUREZA().contains( naturezaFiltro.toUpperCase())) && 
+				(oc.getANO().equalsIgnoreCase(anoFiltro) || oc.getANO().contains(anoFiltro))	
 			
 					) {
 				filtrada.add(oc);

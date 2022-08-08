@@ -25,12 +25,12 @@ public class Ocorrencia {
 	
 	private String MUNICIPIO;
 	
-	private int ANO;
+	private String ANO;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String DATA;
 
-	public Ocorrencia(String _id, String NATUREZA, String MUNICIPIO,int ANO, String DATA) {
+	public Ocorrencia(String _id, String NATUREZA, String MUNICIPIO,String ANO, String DATA) {
 		super();
 		this._id = _id;
 		this.NATUREZA = NATUREZA;
@@ -71,11 +71,11 @@ public class Ocorrencia {
 		this.DATA = dATA;
 	}
 
-	public int getANO() {
+	public String getANO() {
 		return ANO;
 	}
 
-	public void setANO(int aNO) {
+	public void setANO(String aNO) {
 		ANO = aNO;
 	}
 	
